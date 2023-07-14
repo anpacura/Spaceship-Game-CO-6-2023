@@ -7,6 +7,8 @@ class spaceship:
     HEIGHT = 60
     X_POS = (SCREEN_WIDTH // 2)  - WIDTH
     Y_POS = 500
+    UP = 0
+    DOWN = 0
 
     def __init__(self):
         self.imagen = SPACESHIP
@@ -22,11 +24,11 @@ class spaceship:
         if user_input[pygame.K_RIGHT]:
             self.move_right(game_speed)   
 
-        if user_input[pygame.K_TOP]:
-            self.move_top(game_speed)
+        if user_input[pygame.K_UP]:
+            self.move_up(game_speed)
 
-        if user_input[pygame.K_bottom]:
-            self.move_bottom(game_speed)
+        if user_input[pygame.K_DOWN]:
+            self.move_down(game_speed)
 
     def dram(self, screen):
                 screen.blit(self.imagen, self.rect)
@@ -39,10 +41,10 @@ class spaceship:
                     if self.rect.right <= self.rect.left:
                         self.rect.x += game_speed
 
-    def move_top(self, game_speed):
-                    if self.rect.top > 0:
+    def move_up(self, game_speed):
+                    if self.rect.up > 0:
                         self.rect.y -= game_speed
 
-    def move_bottom(self, game_speed):
-                    if self.rect.bottom < 0:
+    def move_down(self, game_speed):
+                    if self.rect.down < 0:
                         self.rect.y += game_speed                                        
