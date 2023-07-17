@@ -7,8 +7,7 @@ class spaceship:
     HEIGHT = 60
     X_POS = (SCREEN_WIDTH // 2)  - WIDTH
     Y_POS = 500
-    UP = 0
-    DOWN = 0
+    
 
     def __init__(self):
         self.imagen = SPACESHIP
@@ -18,33 +17,35 @@ class spaceship:
         self.rect.y = self.Y_POS
 
     def update(self, game_speed, user_input):
-        if user_input[pygame.K_LEFT]:
-            self.move_left(game_speed)
+            if user_input[pygame.K_LEFT]:
+               self.move_left(game_speed)
 
-        if user_input[pygame.K_RIGHT]:
-            self.move_right(game_speed)   
+            if user_input[pygame.K_RIGHT]:
+               self.move_right(game_speed)   
 
-        if user_input[pygame.K_UP]:
-            self.move_up(game_speed)
+            if user_input[pygame.K_UP]:
+               self.move_up(game_speed)
 
-        if user_input[pygame.K_DOWN]:
-            self.move_down(game_speed)
+            if user_input[pygame.K_DOWN]:
+               self.move_down(game_speed)
 
-    def dram(self, screen):
+    def draw(self, screen):
                 screen.blit(self.imagen, self.rect)
 
     def move_left(self, game_speed):
-                    if self.rect.left >= self.rect.right:
+                    if self.rect.left > 0:
+                        self.rect.left = SCREEN_WIDTH
                         self.rect.x -= game_speed
 
     def move_right(self, game_speed):
-                    if self.rect.right <= self.rect.left:
-                        self.rect.x += game_speed
+                    if self.rect.left < 0:
+                       self.rect.right < SCREEN_WIDTH:
+                       self.rect.x += game_speed
 
     def move_up(self, game_speed):
-                    if self.rect.up > SCREEN_WIDTH // 2:
+                    if self.rect.top > SCREEN_HEIGHT // 2:
                         self.rect.y -= game_speed
 
     def move_down(self, game_speed):
-                    if self.rect.down < 0:
+                    if self.rect.bottom <SCREEN_HEIGHT:
                         self.rect.y += game_speed                                        
