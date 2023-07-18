@@ -5,6 +5,7 @@ class EnemyHandler:
         self.enemies = [Ship()]
 
     def update(self):
+        self.add_enemy()
         for enemy in self.enemies:
             enemy.update()
             if not enemy.is_visible:

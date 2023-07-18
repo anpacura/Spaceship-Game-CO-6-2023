@@ -3,7 +3,7 @@ import pygame
 from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 from game.components.spaceship import spaceship
 from game.components.enemies.enemy_handler import EnemyHandler
-
+from game.utils import 
 class Game:
     def __init__(self):
         pygame.init()
@@ -12,6 +12,7 @@ class Game:
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.playing = False
+        self.key = False
         self.game_speed = 10
         self.x_pos_bg = 0
         self.y_pos_bg = 0
@@ -32,11 +33,17 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                self.key = False
 
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(self.game_speed, user_input)
-        self.enemy_handler.update()
+        self.enemy_handler.update(self.bullet_handler)
+        self.bullet_handler.update(self.player)
+        if not self.player.is_alive:
+            pygame.time.delay(300)
+            self.playing = False
 
     def draw(self):
         self.clock.tick(FPS)
@@ -44,6 +51,7 @@ class Game:
         self.draw_background()
         self.player.draw(self.screen)
         self.enemy_handler.draw(self.screen)
+        self.bullet_handler.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 
@@ -56,3 +64,6 @@ class Game:
             self.screen.blit(image, (self.x_pos_bg, self.y_pos_bg - image_height))
             self.y_pos_bg = 0
         self.y_pos_bg += self.game_speed
+
+    def draw_score(self):
+        score, score_rect = text_utils.get_message(F'Your score is: (self.score)', 20, WHITE, 1000, 40)
