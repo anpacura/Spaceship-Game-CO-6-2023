@@ -22,30 +22,26 @@ class spaceship:
 
             if user_input[pygame.K_RIGHT]:
                self.move_right(game_speed)   
-
             if user_input[pygame.K_UP]:
                self.move_up(game_speed)
-
             if user_input[pygame.K_DOWN]:
                self.move_down(game_speed)
 
-    def draw(self, screen):
+    def dram(self, screen):
                 screen.blit(self.imagen, self.rect)
 
     def move_left(self, game_speed):
-                    if self.rect.left > 0:
-                        self.rect.left = SCREEN_WIDTH
+                    if self.rect.left > SCREEN_WIDTH:
                         self.rect.x -= game_speed
 
     def move_right(self, game_speed):
-                    if self.rect.left < 0:
-                       self.rect.right < SCREEN_WIDTH:
-                       self.rect.x += game_speed
+                    if self.rect.right < SCREEN_WIDTH:
+                        self.rect.x += game_speed
 
     def move_up(self, game_speed):
-                    if self.rect.top > SCREEN_HEIGHT // 2:
+                    if self.rect.top < SCREEN_WIDTH // 2:
                         self.rect.y -= game_speed
 
-    def move_down(self, game_speed):
-                    if self.rect.bottom <SCREEN_HEIGHT:
+    def move_down(self, game_speed, SCREEN_HEIGHT):
+                    if self.rect.bottom < SCREEN_HEIGHT:
                         self.rect.y += game_speed                                        
