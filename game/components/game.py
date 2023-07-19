@@ -65,13 +65,5 @@ class Game:
             self.y_pos_bg = 0
         self.y_pos_bg += self.game_speed
 
-    def draw_menu(self):
-        pass
     def draw_score(self):
         score, score_rect = text_utils.get_message(F'Your score is: (self.score)', 20, WHITE, 1000, 40)
-
-    def reset(self):
-        self.player.reset()
-        self.enemy_handler.reset()
-        self.bullet_handler.reset()
-        self.score = 0    
