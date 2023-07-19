@@ -67,3 +67,4 @@ class Game:
 
     def draw_score(self):
         score, score_rect = text_utils.get_message(F'Your score is: (self.score)', 20, WHITE, 1000, 40)
+        self.screen.blit(score, score_rect)
